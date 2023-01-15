@@ -14,16 +14,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn1, btn2;
+        Button btn1, btn2, btn3;
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
 
         btn1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent intt = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(intt);
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                String message = "Talha";
+                intent.putExtra("Key", 0321);
+                intent.putExtra("abc", "BITF19A024");
+                startActivity(intent);
             }
         });
 
@@ -35,5 +39,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                composeEmail("ahmadnutt9111@gmail.com", "Hi, I am Android studio");
+            }
+        });
+    }
+    public void composeEmail(String address, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_EMAIL, address);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }
