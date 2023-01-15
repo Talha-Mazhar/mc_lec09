@@ -1,6 +1,8 @@
 package com.example.lec09;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
@@ -22,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intt = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intt);
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri webpage = Uri.parse("https://youtube.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(intent);
             }
         });
     }
